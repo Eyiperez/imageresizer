@@ -1,5 +1,5 @@
 const axios = require('axios');
-cosnt sharp = require('sharp');
+const sharp = require('sharp');
 const ImageService = {};
 
 ImageService.getImageDataFromUrl = async (url) => {
@@ -12,7 +12,7 @@ ImageService.getImageDataFromUrl = async (url) => {
 }
 
 ImageService.resizeImageData = async (imageData, height, width) => {
-   return await sharp(imageData).resize(height, width).png.toBuffer();
+   return await sharp(imageData).resize(parseInt(height), parseInt(width)).png.toBuffer();
 }
 
 module.exports = ImageService;

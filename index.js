@@ -12,11 +12,15 @@ app.get('/', async (req, res, next) => {
         //Check if all params are filled out
         SecurityService.checkForParams({height, width, image});
 
-        //
+        //Get image data from url
         const imageData = await ImageService.getImageDataFromUrl(image);
         console.log(imageData)
 
-        res.json({height, width, image})
+        //Resize the image data and return it
+        const resizedImage = await ImageService.resizeImageData(imageData, height, width);
+
+        res.type('png');
+        res.end(resizedImage);
     } catch(err) {
         next(err);
     }
