@@ -3,6 +3,8 @@ const app = express();
 const port = 3000;
 
 app.get('/', (req, res, next) => {
+    //const {}
+
     try {
 
     } catch(err) {
@@ -11,6 +13,10 @@ app.get('/', (req, res, next) => {
 })
 
 app.use((req, res, next) => {
+    res.status(500).json({
+        success: false,
+        message: err.message
+    })
 
 });
 
