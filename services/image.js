@@ -12,7 +12,12 @@ ImageService.getImageDataFromUrl = async (url) => {
 }
 
 ImageService.resizeImageData = async (imageData, height, width) => {
-   return await sharp(imageData).resize(parseInt(height), parseInt(width)).png.toBuffer();
-}
+    return await sharp(imageData).resize({
+      width: parseInt(width),
+      height: parseInt(height),
+      fit: sharp.fit.cover,
+      position: sharp.strategy.entropy
+    }).png().toBuffer();
+  }
 
 module.exports = ImageService;
